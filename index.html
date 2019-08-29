@@ -1,1 +1,114 @@
-"Hello World"
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset ="utf-8">
+    <title>山本拓磨のホームページ</title>
+    <link rel ="stylesheet" href="style.css">
+
+    <script>
+        function CountdownTimer(elm,tl,mes){
+        this.initialize.apply(this,arguments);
+        }
+        CountdownTimer.prototype={
+        initialize:function(elm,tl,mes) {
+        this.elem = document.getElementById(elm);
+        this.tl = tl;
+        this.mes = mes;
+        },countDown:function(){
+        var timer='';
+        var today=new Date();
+        var day=Math.floor((this.tl-today)/(24*60*60*1000));
+        var hour=Math.floor(((this.tl-today)%(24*60*60*1000))/(60*60*1000));
+        var min=Math.floor(((this.tl-today)%(24*60*60*1000))/(60*1000))%60;
+        var sec=Math.floor(((this.tl-today)%(24*60*60*1000))/1000)%60%60;
+        var milli=Math.floor(((this.tl-today)%(24*60*60*1000))/10)%100;
+        var me=this;
+        if( ( this.tl - today ) > 0 ){
+        if (day) timer += '<span class="day">'+day+'日と</span>';
+        if (hour) timer += '<span class="hour">'+hour+'時間</span>';
+        timer += '<span class="min">'+this.addZero(min)+'分</span><span class="sec">'+this.addZero(sec)+'秒</span><span class="milli">'+this.addZero(milli)+'</span>';
+        this.elem.innerHTML = timer;
+        tid = setTimeout( function(){me.countDown();},10 );
+        }else{
+        this.elem.innerHTML = this.mes;
+        return;
+        }
+        },addZero:function(num){ return ('0'+num).slice(-2); }
+        }
+        function CDT(){
+        var text = '誕生日まで :';
+        var tl = new Date('2020/02/27 00:00:00');
+        var timer = new CountdownTimer('CDT',tl,'誕生日が過ぎました。');
+        timer.countDown();
+        target = document.getElementById("text");
+        target.innerHTML = text;
+        }
+        window.onload=function(){
+        CDT();
+        }
+        </script>
+    </head>
+   
+    <body>
+   <div class ="header">
+       <div class="header-logo">TAKUMA YAMAMOTO</div>
+       <div class ="header-list">
+           <ul>
+               <a href ="#profile">自己紹介</a>
+               <a href ="#skill">資格</a>
+               <a href="#hobby">趣味</a>
+               <a href="#work">作品</a>
+               <a href="#information">お問い合わせ</a>
+           </ul>
+       </div>
+   </div>
+   <div class = main>
+      
+   <h1>人事の方へ</h1>
+   <h2>山本拓磨について知りたいですか？</h2>
+   </div>
+   
+    
+   <div class="contents">
+   <h1 id = "profile">自己紹介</h1>
+       <img src="078.jpg" alt="プロフィール" width="500" height="400">
+       <ul>
+           <li>1999年2月27日生まれ</li>
+           <li>2011～2017年サッカー部に所属</li>
+           <li>2017年4月関西外国語大学英語キャリア学部入学</li>
+           <li>2019年2月未来電子テクノロジーでインターンを始める</li>
+       </ul>
+       <a href="https://twitter.com/R85m3J4ExcpQ0bX" class="twitter-follow-button" data-show-count="false">Follow @山本拓磨</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <h1 id ="hobby" >趣味</h1>
+      <p>趣味はスポーツをすることです。</p>
+      <P>中高時代はサッカー部に所属しており、中学生の時は地区大会の決勝戦まで進みました。</p>
+      <p>また最近は、NETFLIXで映画とドラマを観ることにハマっています。</p>
+      <p>僕のおすすめのドラマは「breaking bad」です。</p>
+       　
+      </p>
+     </div>
+
+      <div class="skill-list">
+      <h1 id ="skill">資格</h1>
+      <p>2014年11月英語検定2級取得</p>
+      <p>2015年少林寺拳法2段取得</p>
+      <P>2017年7月TOEFL ITP 557点取得</P>
+   </div>
+      <div class="work-list">
+      <h1 id ="work">作品</h1>
+      <p>ここでは、私が作ったカウントダウンタイマーを紹介します。</p>
+      
+      <div id="jct_sample">
+        <span class="timetext" id="text"></span><span id="CDT"></span>
+        </div>
+   </div>
+   <div class="information-list">
+   <h1 id ="information">お問い合わせ</h1>
+   <p>会社名</p>
+   <input type="text" name="name">
+   <p>お問い合わせ内容</p>
+   <textarea name="contents"></textarea>
+   <input class="contact-submit" type="submit" value="送信">
+   </div>
+
+    </body>
